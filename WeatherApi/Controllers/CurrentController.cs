@@ -10,10 +10,10 @@ namespace WeatherApi.Controllers
 {
     [Route("/[controller]")]
     [ApiController]
-    public class WeatherController : ControllerBase
+    public class CurrentController : ControllerBase
     {
         private readonly Client _client;
-        public WeatherController(Client client)
+        public CurrentController(Client client)
         {
             this._client = client;
         }
