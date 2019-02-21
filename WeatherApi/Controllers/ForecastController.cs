@@ -25,10 +25,10 @@ namespace WeatherApi.Controllers
             {
                 try
                 {
-                    var weatherResponses = await _client.Forecast(new Coord { lat = latitude, lon = longitude });
-                    return Ok(weatherResponses.Select(weatherResponse => new WeatherResult { date = DateTimeOffset.FromUnixTimeSeconds(weatherResponse.dt).DateTime, temp = weatherResponse.main.temp, icon = weatherResponse.weather[0].icon }));
+                    var weatherResponses = await _client.Forecast(new Coord { Lat = latitude, Lon = longitude });
+                    return Ok(weatherResponses.Select(weatherResponse => new WeatherResult { Date = DateTimeOffset.FromUnixTimeSeconds(weatherResponse.Dt).DateTime, Temp = weatherResponse.Main.Temp, Icon = weatherResponse.Weather[0].Icon }));
                 }
-                catch
+                catch(Exception e)
                 {
                     return StatusCode(500, "Error retrieving weather information");
                 }

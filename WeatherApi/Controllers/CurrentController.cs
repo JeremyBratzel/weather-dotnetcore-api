@@ -25,8 +25,8 @@ namespace WeatherApi.Controllers
             {
                 try
                 {
-                    var weatherResponse = await _client.Current(new Coord { lat = latitude, lon = longitude });
-                    return new WeatherResult { date = DateTimeOffset.FromUnixTimeSeconds(weatherResponse.dt).DateTime, temp = weatherResponse.main.temp, icon = weatherResponse.weather[0].icon };
+                    var weatherResponse = await _client.Current(new Coord { Lat = latitude, Lon = longitude });
+                    return new WeatherResult { Date = DateTimeOffset.FromUnixTimeSeconds(weatherResponse.Dt).DateTime, Temp = weatherResponse.Main.Temp, Icon = weatherResponse.Weather[0].Icon };
                 }
                 catch
                 {

@@ -20,14 +20,14 @@ namespace Weather.OpenWeatherMap
 
         public async Task<Weather.Core.Models.WeatherResponse> Current(Coord coords)
         {
-            var result = await _httpClient.GetStringAsync($"http://api.openweathermap.org/data/2.5/weather?lat={coords.lat}&lon={coords.lon}&appid={this._appId}&units=imperial");
+            var result = await _httpClient.GetStringAsync($"http://api.openweathermap.org/data/2.5/weather?lat={coords.Lat}&lon={coords.Lon}&appid={this._appId}&units=imperial");
             Weather.Core.Models.WeatherResponse weatherResponse = JsonConvert.DeserializeObject<Weather.Core.Models.WeatherResponse>(result);
             return weatherResponse;
         }
 
         public async Task<Weather.Core.Models.WeatherResponse[]> Forecast(Coord coords)
         {
-            var results = await _httpClient.GetStringAsync($"http://api.openweathermap.org/data/2.5/forecast?lat={coords.lat}&lon={coords.lon}&appid={this._appId}&units=imperial");
+            var results = await _httpClient.GetStringAsync($"http://api.openweathermap.org/data/2.5/forecast?lat={coords.Lat}&lon={coords.Lon}&appid={this._appId}&units=imperial");
             JObject jObject = JObject.Parse(results);
             var forecastList = jObject.SelectToken("list").ToString(Formatting.None);
             Weather.Core.Models.WeatherResponse[] weatherResponse = JsonConvert.DeserializeObject<Weather.Core.Models.WeatherResponse[]>(forecastList);
